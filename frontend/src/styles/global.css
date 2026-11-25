@@ -1,0 +1,174 @@
+/* ============================================================
+   基础层：重置 / 桌面壁纸 / 窗口骨架 / 动效降级
+   ============================================================ */
+
+@import '../assets/fonts/fonts.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font: var(--type-body);
+  color: var(--on-surface);
+  background: var(--background);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+h1,
+h2,
+h3,
+p,
+dl,
+dd,
+ol {
+  margin: 0;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+svg {
+  display: block;
+}
+
+kbd {
+  font: var(--type-mono);
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: var(--surface-variant);
+  color: var(--on-surface-variant);
+  border: 1px solid var(--outline-variant);
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: var(--r-xs);
+}
+
+/* ---- 细滚动条 ---- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--outline-variant);
+  border: 3px solid transparent;
+  background-clip: padding-box;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--outline);
+  background-clip: padding-box;
+}
+
+/* ---- 通用原子类 ---- */
+.row {
+  display: flex;
+  align-items: center;
+}
+.grow {
+  flex: 1;
+  min-width: 0;
+}
+.gap-2 { gap: var(--sp-2); }
+
+.muted { color: var(--on-surface-variant); }
+.faint { color: var(--muted); }
+.mono { font: var(--type-mono); }
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---- 交错淡入 ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+  transition: opacity var(--dur-4) var(--ease-standard),
+    transform var(--dur-4) var(--ease-standard);
+}
+
+/* ---- 视图切换过渡 ---- */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity var(--dur-3) var(--ease-standard);
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: opacity var(--dur-3) var(--ease-standard), transform var(--dur-3) var(--ease-standard);
+}
+.slide-enter-from,
+.slide-leave-to {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  50% {
+    box-shadow: 0 0 0 6px transparent;
+  }
+}
+
+/* ---- 动效降级 ---- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

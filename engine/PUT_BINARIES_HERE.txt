@@ -1,0 +1,7 @@
+存放外部引擎可执行文件，本目录内容不纳入版本控制。
+
+需要的文件：
+  N_m3u8DL-RE  (Windows: N_m3u8DL-RE.exe)  下载 / 解密 / 混流
+  ffmpeg       (Windows: ffmpeg.exe)       抽封面与封装
+
+下载地址见项目 README。放入后无需改配置，默认路径即指向这里。

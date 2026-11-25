@@ -1,0 +1,32 @@
+# 后端
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+build/
+dist/
+node_modules/
+
+# 前端
+frontend/dist/
+frontend/node_modules/
+frontend/.vite/
+
+# 外部引擎二进制（体积大，按 README 自行放置）
+engine/*
+!engine/PUT_BINARIES_HERE.txt
+
+# 运行时产物
+runtime/
+*.db
+*.db-shm
+*.db-wal
+*.db-journal
+*.log
+settings.json
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
